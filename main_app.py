@@ -20,16 +20,15 @@ dp = Dispatcher(bot, storage=storage)
 
 
 def educational_direction(snils,text):
-  
-    ### Указать свой браузер webdriver.Ваш браузер()
-    browser = webdriver.Edge()
-  
-    browser.get("https://lk.priem.voenmeh.ru/stats/trajectory")
-    delay = 60
-    WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.ID, "t_edu_spec_dropdown")))
-    browser.find_element(By.ID,'t_edu_spec_dropdown').click()
-    browser.find_element(By.XPATH,f"//*[contains(text(), '{text}')]").click()
     try:
+        ### Указать свой браузер webdriver.Ваш браузер()
+        browser = webdriver.Edge()
+      
+        browser.get("https://lk.priem.voenmeh.ru/stats/trajectory")
+        delay = 60
+        WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.ID, "t_edu_spec_dropdown")))
+        browser.find_element(By.ID,'t_edu_spec_dropdown').click()
+        browser.find_element(By.XPATH,f"//*[contains(text(), '{text}')]").click()
         WebDriverWait(browser, delay).until(EC.presence_of_element_located((By.TAG_NAME, "tr")))
         html = browser.page_source
         soup = BeautifulSoup(html,"lxml")
